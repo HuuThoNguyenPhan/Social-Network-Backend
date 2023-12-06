@@ -1,0 +1,79 @@
+{
+  "folders": {
+    "items": {
+      "src": {},
+      "test": {},
+      "host": {}
+    }
+  },
+  "packages": {
+    "Backend.SocialNetworkAPI.Domain.Shared": {
+      "path": "src/Backend.SocialNetworkAPI.Domain.Shared/Backend.SocialNetworkAPI.Domain.Shared.abppkg.json",
+      "folder": "src"
+    },
+    "Backend.SocialNetworkAPI.Domain": {
+      "path": "src/Backend.SocialNetworkAPI.Domain/Backend.SocialNetworkAPI.Domain.abppkg.json",
+      "folder": "src"
+    },
+    "Backend.SocialNetworkAPI.Application.Contracts": {
+      "path": "src/Backend.SocialNetworkAPI.Application.Contracts/Backend.SocialNetworkAPI.Application.Contracts.abppkg.json",
+      "folder": "src"
+    },
+    "Backend.SocialNetworkAPI.Application": {
+      "path": "src/Backend.SocialNetworkAPI.Application/Backend.SocialNetworkAPI.Application.abppkg.json",
+      "folder": "src"
+    },
+    "Backend.SocialNetworkAPI.EntityFrameworkCore": {
+      "path": "src/Backend.SocialNetworkAPI.EntityFrameworkCore/Backend.SocialNetworkAPI.EntityFrameworkCore.abppkg.json",
+      "folder": "src"
+    },
+    "Backend.SocialNetworkAPI.MongoDB": {
+      "path": "src/Backend.SocialNetworkAPI.MongoDB/Backend.SocialNetworkAPI.MongoDB.abppkg.json",
+      "folder": "src"
+    },
+    "Backend.SocialNetworkAPI.HttpApi": {
+      "path": "src/Backend.SocialNetworkAPI.HttpApi/Backend.SocialNetworkAPI.HttpApi.abppkg.json",
+      "folder": "src"
+    },
+    "Backend.SocialNetworkAPI.HttpApi.Client": {
+      "path": "src/Backend.SocialNetworkAPI.HttpApi.Client/Backend.SocialNetworkAPI.HttpApi.Client.abppkg.json",
+      "folder": "src"
+    },
+    "Backend.SocialNetworkAPI.TestBase": {
+      "path": "test/Backend.SocialNetworkAPI.TestBase/Backend.SocialNetworkAPI.TestBase.abppkg.json",
+      "folder": "test"
+    },
+    "Backend.SocialNetworkAPI.EntityFrameworkCore.Tests": {
+      "path": "test/Backend.SocialNetworkAPI.EntityFrameworkCore.Tests/Backend.SocialNetworkAPI.EntityFrameworkCore.Tests.abppkg.json",
+      "folder": "test"
+    },
+    "Backend.SocialNetworkAPI.MongoDB.Tests": {
+      "path": "test/Backend.SocialNetworkAPI.MongoDB.Tests/Backend.SocialNetworkAPI.MongoDB.Tests.abppkg.json",
+      "folder": "test"
+    },
+    "Backend.SocialNetworkAPI.Domain.Tests": {
+      "path": "test/Backend.SocialNetworkAPI.Domain.Tests/Backend.SocialNetworkAPI.Domain.Tests.abppkg.json",
+      "folder": "test"
+    },
+    "Backend.SocialNetworkAPI.Application.Tests": {
+      "path": "test/Backend.SocialNetworkAPI.Application.Tests/Backend.SocialNetworkAPI.Application.Tests.abppkg.json",
+      "folder": "test"
+    },
+    "Backend.SocialNetworkAPI.HttpApi.Host": {
+      "path": "host/Backend.SocialNetworkAPI.HttpApi.Host/Backend.SocialNetworkAPI.HttpApi.Host.abppkg.json",
+      "folder": "host"
+    },
+    "Backend.SocialNetworkAPI.HttpApi.Client.ConsoleTestApp": {
+      "path": "test/Backend.SocialNetworkAPI.HttpApi.Client.ConsoleTestApp/Backend.SocialNetworkAPI.HttpApi.Client.ConsoleTestApp.abppkg.json",
+      "folder": "test"
+    },
+    "Backend.SocialNetworkAPI.AuthServer": {
+      "path": "host/Backend.SocialNetworkAPI.AuthServer/Backend.SocialNetworkAPI.AuthServer.abppkg.json",
+      "folder": "host"
+    },
+    "Backend.SocialNetworkAPI.Host.Shared": {
+      "path": "host/Backend.SocialNetworkAPI.Host.Shared/Backend.SocialNetworkAPI.Host.Shared.abppkg.json",
+      "folder": "host"
+    }
+  }
+}

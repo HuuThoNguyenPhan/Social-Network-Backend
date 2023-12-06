@@ -1,0 +1,7 @@
+{
+  "modules": {
+    "Backend.SocialNetworkAPI": {
+      "path": "Backend.SocialNetworkAPI.abpmdl.json"
+    }
+  }
+}
