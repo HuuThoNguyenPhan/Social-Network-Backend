@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Backend.SocialNetworkAPI.Model;
+using Microsoft.EntityFrameworkCore;
 using Volo.Abp.Data;
 using Volo.Abp.EntityFrameworkCore;
 
@@ -14,8 +15,11 @@ public class SocialNetworkAPIDbContext : AbpDbContext<SocialNetworkAPIDbContext>
     public SocialNetworkAPIDbContext(DbContextOptions<SocialNetworkAPIDbContext> options)
         : base(options)
     {
-
     }
+
+    public DbSet<Photo> Photo { get; set; }
+    public DbSet<Post> Post { get; set; }
+    public DbSet<Comment> Comment { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
