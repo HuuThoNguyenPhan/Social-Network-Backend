@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Backend.SocialNetworkAPI.Model;
+using Microsoft.EntityFrameworkCore;
 using Volo.Abp;
+using Volo.Abp.EntityFrameworkCore.Modeling;
 
 namespace Backend.SocialNetworkAPI.EntityFrameworkCore;
 
@@ -29,5 +31,16 @@ public static class SocialNetworkAPIDbContextModelCreatingExtensions
             b.HasIndex(q => q.CreationTime);
         });
         */
+        builder.Entity<Photo>(b =>
+        {
+            b.ToTable("Photo");
+            b.Property(q => q.Id).IsRequired().ValueGeneratedOnAdd();
+        });
+
+        builder.Entity<Post>(b =>
+        {
+            b.ToTable("Post");
+            b.Property(q => q.Id).IsRequired().ValueGeneratedOnAdd();
+        });
     }
 }
