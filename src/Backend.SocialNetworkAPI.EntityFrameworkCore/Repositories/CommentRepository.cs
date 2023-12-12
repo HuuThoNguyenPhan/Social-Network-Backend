@@ -27,7 +27,7 @@ namespace Backend.SocialNetworkAPI.Repositories
             try
             {
                 return await _dbContext.Comment.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id)
-                    ?? throw new BusinessException(ExceptionCode.NotFoundPostId).WithData("id", id); ;
+                    ?? throw new BusinessException(ExceptionCode.NotFoundCommentId).WithData("id", id); ;
             }
             catch (BusinessException bex)
             {
@@ -43,7 +43,7 @@ namespace Backend.SocialNetworkAPI.Repositories
         {
             try
             {
-                await _dbContext.Comment.AddRangeAsync(comment);
+                await _dbContext.Comment.AddAsync(comment);
                 return await _dbContext.SaveChangesAsync() > 0;
             }
             catch (Exception ex)

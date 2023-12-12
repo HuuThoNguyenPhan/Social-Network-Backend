@@ -16,13 +16,13 @@ namespace Backend.SocialNetworkAPI.SocialNetwork
             _postService = postService;
         }
 
-        [HttpPost("/create")]
+        [HttpPost("/create-new")]
         public async ValueTask<bool> CreateAsync(CreatePostDto input)
         {
             return await _postService.CreateAsync(input);
         }
 
-        [HttpGet("/Get-Detail")]
+        [HttpGet("/get-detail-by-id")]
         public async ValueTask<PostFullInfoDto> GetPostById(Guid id)
         {
             return await _postService.GetPostById(id);

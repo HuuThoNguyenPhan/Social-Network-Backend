@@ -1,8 +1,6 @@
 ﻿using Backend.SocialNetworkAPI.Dto.CommentDto;
-using Backend.SocialNetworkAPI.Model;
 using Backend.SocialNetworkAPI.ServiceInterface;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Threading.Tasks;
 
 namespace Backend.SocialNetworkAPI.SocialNetwork
@@ -17,7 +15,7 @@ namespace Backend.SocialNetworkAPI.SocialNetwork
             _commentService = commentService;
         }
 
-        [HttpPost("/create-new")]
+        [HttpPost("/create-comment")]
         public async ValueTask<bool> CreateCommentAsync(CreateCommentDto input)
         {
             return await _commentService.CreateCommentAsync(input);

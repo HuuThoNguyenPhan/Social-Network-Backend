@@ -26,7 +26,7 @@ namespace Backend.SocialNetworkAPI.Repositories
         {
             try
             {
-                await _dbContext.Post.AddRangeAsync(post);
+                await _dbContext.Post.AddAsync(post);
                 await _dbContext.SaveChangesAsync();
                 return post;
             }

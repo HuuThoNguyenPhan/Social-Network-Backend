@@ -14,4 +14,5 @@ public interface ISocialNetworkAPIDbContext : IEfCoreDbContext
     DbSet<Photo> Photo { get; set; }
     DbSet<Post> Post { get; set; }
     DbSet<Comment> Comment { get; set; }
+    DbSet<Like> Like { get; set; }
 }
