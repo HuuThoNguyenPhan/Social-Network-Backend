@@ -23,7 +23,7 @@
     "SocialNetworkAPI:0009": "Không tìm thấy bài viết có Id {id}",
     "SocialNetworkAPI:0010": "Trạng thái cần chuyển không hợp lệ",
     "SocialNetworkAPI:10108": "Không tìm thấy phiếu kiểm kê {TicketCode}",
-    "SocialNetworkAPI:0011": "Không tìm thấy like với Id {id}",
+    "SocialNetworkAPI:0011": "Bạn chưa like bài viết có Id {id}",
     "SocialNetworkAPI:10113": "Không tìm thấy phiếu xác nhận với mã: {ticketConfirmCode}",
     "SocialNetworkAPI:10109": "Sản phẩm có quản lý imei, vui lòng quét bằng mã serial!",
     "SocialNetworkAPI:0012": "Sản phẩm vừa quét đã được kiểm kê ở phiếu {ticketcode}. Vui lòng quét sản phẩm khác!",
