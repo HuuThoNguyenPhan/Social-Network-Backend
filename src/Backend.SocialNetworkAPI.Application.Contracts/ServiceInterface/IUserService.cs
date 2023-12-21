@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Backend.SocialNetworkAPI.Dto.UserDto;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,8 @@ namespace Backend.SocialNetworkAPI.ServiceInterface
 {
     public interface IUserService : IApplicationService
     {
-        public ValueTask<bool> Login();
+        public ValueTask<string> AuthenticateAsync(UserAuthDto input);
+
+        public ValueTask<string> RegisterUserAsync(UserAuthDto input);
     }
 }

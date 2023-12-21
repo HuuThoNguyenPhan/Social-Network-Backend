@@ -27,7 +27,7 @@ namespace Backend.SocialNetworkAPI.Repositories
             try
             {
                 return await _dbContext.Comment.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id)
-                    ?? throw new BusinessException(ExceptionCode.NotFoundCommentId).WithData("id", id); ;
+                    ?? throw new BusinessException(ExceptionCode.NotFoundCommentId).WithData("id", id);
             }
             catch (BusinessException bex)
             {

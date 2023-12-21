@@ -1,10 +1,12 @@
 ﻿using Backend.SocialNetworkAPI.Dto.CommentDto;
 using Backend.SocialNetworkAPI.ServiceInterface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace Backend.SocialNetworkAPI.SocialNetwork
 {
+    [Authorize]
     [Route("api/comment")]
     public class CommentController : SocialNetworkAPIController, ICommentService
     {

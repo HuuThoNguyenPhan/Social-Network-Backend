@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using IdentityModel;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors;
@@ -15,7 +14,6 @@ using StackExchange.Redis;
 using Microsoft.OpenApi.Models;
 using Volo.Abp;
 using Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy;
-using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
 using Volo.Abp.AspNetCore.Serilog;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.Autofac;
@@ -25,12 +23,8 @@ using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore.SqlServer;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
-using Volo.Abp.MultiTenancy;
-using Volo.Abp.PermissionManagement.EntityFrameworkCore;
-using Volo.Abp.Security.Claims;
-using Volo.Abp.SettingManagement.EntityFrameworkCore;
 using Volo.Abp.Swashbuckle;
-using Volo.Abp.TenantManagement.EntityFrameworkCore;
+
 using Volo.Abp.VirtualFileSystem;
 using System.Reflection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
@@ -41,6 +35,9 @@ using Elastic.Apm;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using HealthChecks.UI.Client;
 using Volo.Abp.Auditing;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Microsoft.AspNetCore.Http;
 
 namespace Backend.SocialNetworkAPI;
 
@@ -112,9 +109,16 @@ public class SocialNetworkAPIHttpApiHostModule : AbpModule
         context.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
             {
-                options.Authority = configuration["AuthServer:Authority"];
-                options.RequireHttpsMetadata = Convert.ToBoolean(configuration["AuthServer:RequireHttpsMetadata"]);
-                options.Audience = "SocialNetworkAPI";
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = configuration["Jwt:Issuer"],
+                    ValidAudience = configuration["Jwt:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"]))
+                };
             });
 
         Configure<AbpDistributedCacheOptions>(options =>
@@ -170,6 +174,7 @@ public class SocialNetworkAPIHttpApiHostModule : AbpModule
 
     public override void OnApplicationInitialization(ApplicationInitializationContext context)
     {
+
         var app = context.GetApplicationBuilder();
         var env = context.GetEnvironment();
 
@@ -178,6 +183,7 @@ public class SocialNetworkAPIHttpApiHostModule : AbpModule
         Agent.Subscribe(new HttpDiagnosticsSubscriber());
         Agent.Subscribe(new EfCoreDiagnosticsSubscriber());
 
+        app.UseAuthentication();
         if (env.IsDevelopment())
         {
             app.UseDeveloperExceptionPage();
@@ -186,13 +192,12 @@ public class SocialNetworkAPIHttpApiHostModule : AbpModule
         {
             app.UseHsts();
         }
-
         app.UseHttpsRedirection();
         app.UseCorrelationId();
         app.UseStaticFiles();
         app.UseRouting();
+        app.UseAuthorization();
         /*app.UseCors();*/
-        app.UseAuthentication();
         /*if (MultiTenancyConsts.IsEnabled)
         {
             app.UseMultiTenancy();
