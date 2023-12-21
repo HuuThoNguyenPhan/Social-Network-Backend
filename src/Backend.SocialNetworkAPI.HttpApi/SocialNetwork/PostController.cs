@@ -1,11 +1,13 @@
 ﻿using Backend.SocialNetworkAPI.Dto.PostDto;
 using Backend.SocialNetworkAPI.ServiceInterface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 
 namespace Backend.SocialNetworkAPI.SocialNetwork
 {
+    [Authorize]
     [Route("api/post")]
     public class PostController : SocialNetworkAPIController, IPostService
     {

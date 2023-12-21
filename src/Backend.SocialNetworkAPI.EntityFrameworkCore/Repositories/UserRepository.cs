@@ -13,53 +13,53 @@ using Volo.Abp.DependencyInjection;
 
 namespace Backend.SocialNetworkAPI.Repositories
 {
-    internal class LikeRepository : ITransientDependency, ILikeRepository
+    public class UserRepository : ITransientDependency, IUserRepository
     {
         private readonly ISocialNetworkAPIDbContext _dbContext;
 
-        public LikeRepository(ISocialNetworkAPIDbContext dbContext)
+        public UserRepository(ISocialNetworkAPIDbContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public async ValueTask<Like> CheckLiked(Like like)
+        public async Task<bool> FindByEmail(string email)
         {
             try
             {
-                return await _dbContext.Like.AsNoTracking().FirstOrDefaultAsync(x => x.IdPost == like.IdPost && x.CreatedBy == like.CreatedBy);
+                return await _dbContext.User.AsNoTracking().AnyAsync(u => u.Email == email);
             }
             catch (Exception ex)
             {
                 throw new UserFriendlyException(SocialNetworkAPIErrorCodes.ERROR_COMMON)
-                    .WithData("Message", string.Format("LikeRepository-CheckLiked-{0}", ex.Message));
+                   .WithData("Message", string.Format("UserRepository-FindByEmail-{0}", ex.Message));
             }
         }
 
-        public async ValueTask<bool> InsertAsync(Like like)
+        public async Task<User> InsertAsync(User user)
         {
             try
             {
-                await _dbContext.Like.AddAsync(like);
-                return _dbContext.SaveChanges() > 0;
+                await _dbContext.User.AddAsync(user);
+                await _dbContext.SaveChangesAsync();
+                return user;
             }
             catch (Exception ex)
             {
                 throw new UserFriendlyException(SocialNetworkAPIErrorCodes.ERROR_COMMON)
-                    .WithData("Message", string.Format("LikeRepository-InsertAsync-{0}", ex.Message));
+                   .WithData("Message", string.Format("UserRepository-InsertAsync-{0}", ex.Message));
             }
         }
 
-        public async ValueTask<bool> UpdateAsync(Like like)
+        public async Task<User> IsValidUser(User user)
         {
             try
             {
-                _dbContext.Like.Update(like);
-                return _dbContext.SaveChanges() > 0;
+                return await _dbContext.User.AsNoTracking().FirstOrDefaultAsync(u => u.Email == user.Email && u.Password == user.Password);
             }
             catch (Exception ex)
             {
                 throw new UserFriendlyException(SocialNetworkAPIErrorCodes.ERROR_COMMON)
-                    .WithData("Message", string.Format("LikeRepository-InsertAsync-{0}", ex.Message));
+                   .WithData("Message", string.Format("UserRepository-IsValidUser-{0}", ex.Message));
             }
         }
     }

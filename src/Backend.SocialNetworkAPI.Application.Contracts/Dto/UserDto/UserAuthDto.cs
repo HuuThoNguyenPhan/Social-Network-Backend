@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Backend.SocialNetworkAPI.Dto.UserDto
 {
-    public class UserInfoDto
+    public class UserAuthDto
     {
         public string Email { get; set; }
         public string Password { get; set; }

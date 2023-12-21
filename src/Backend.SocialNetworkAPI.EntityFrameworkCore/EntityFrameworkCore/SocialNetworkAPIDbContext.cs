@@ -21,6 +21,7 @@ public class SocialNetworkAPIDbContext : AbpDbContext<SocialNetworkAPIDbContext>
     public DbSet<Post> Post { get; set; }
     public DbSet<Comment> Comment { get; set; }
     public DbSet<Like> Like { get; set; }
+    public DbSet<User> User { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
